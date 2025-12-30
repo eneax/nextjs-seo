@@ -1,4 +1,40 @@
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Home - NextSEO",
+  description: "Learn more about Next.js SEO techniques and best practices.",
+  keywords: ["Next.js", "SEO", "Metadata", "Static Site", "Web Vitals"],
+  openGraph: {
+    title: "Next.js SEO",
+    description: "Master metadata, robots, sitemaps, and more.",
+    siteName: "nextseo.com",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Next.js SEO",
+    description: "Master metadata, robots, sitemaps, and more.",
+    creator: "@eneax",
+    images: ["https://example.com/seo.png"],
+  },
+  robots: {
+    index: true, // you want this page to appear in search results
+    follow: true, // you want search engines to follow links on this page
+    nocache: false, // prevent search engines from caching this page (no caching if page is dynamic and changes often)
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1, // how many characters of text to show in search results (-1 means no limit)
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://nextseo.com/",
+  },
+};
 
 export default function Home() {
   return (
