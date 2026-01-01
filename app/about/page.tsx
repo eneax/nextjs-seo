@@ -107,6 +107,27 @@ export default function AboutPage() {
             </a>
           </li>
         </ul>
+
+        <h2 className="text-2xl font-semibold mb-3">Dynamic Metadata</h2>
+        <ul className="list-disc pl-6 mb-4">
+          <li>
+            While static metadata is great for most use cases, sometimes you
+            need dynamic metadata that changes based on the content of the page.
+          </li>
+          <li>
+            In Next.js, you can create a `generateMetadata` function that
+            generates metadata dynamically based on the page `props`.
+          </li>
+          <li>
+            This is especially useful for pages with dynamic routes, such as
+            product pages or blog posts.
+          </li>
+          <li>
+            Dynamic metadata allows you to provide unique titles, descriptions,
+            and Open Graph tags for each page, improving SEO and social media
+            sharing.
+          </li>
+        </ul>
       </div>
     </div>
   );

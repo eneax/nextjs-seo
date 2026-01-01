@@ -1,8 +1,31 @@
+import { Metadata } from "next";
 import { products } from "../data";
 
 interface ProductPageProps {
   params: {
     id: string;
+  };
+}
+
+export async function generateMetadata({
+  params,
+}: ProductPageProps): Promise<Metadata> {
+  const { id } = await params;
+  const product = products.find((product) => product.id === id);
+
+  if (!product) {
+    return {
+      title: "Product Not Found",
+      description: "The product you are looking for does not exist.",
+    };
+  }
+
+  return {
+    title: `${product.name} - ${product.brand} | NextSEO`,
+    description: `${product.description} Price: $${product.price}. ${
+      product.inStock ? "In Stock" : "Out of Stock"
+    }. Rating: ${product.rating}/5 stars.`,
+    keywords: [product.category, product.brand, product.name.toLowerCase()],
   };
 }
 
