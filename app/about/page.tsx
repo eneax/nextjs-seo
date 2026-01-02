@@ -128,6 +128,27 @@ export default function AboutPage() {
             sharing.
           </li>
         </ul>
+
+        <h2 className="text-2xl font-semibold mb-3">Robots</h2>
+        <ul className="list-disc pl-6 mb-4">
+          <li>
+            The `robots` field in the metadata object allows you to control how
+            search engine bots interact with your page.
+          </li>
+          <li>
+            You can specify whether you want the page to be indexed, whether
+            links should be followed, and provide specific instructions for each
+            bot (e.g., Googlebot).
+          </li>
+          <li>
+            This helps you manage your site presence in search engine results
+            and optimize crawling behavior.
+          </li>
+          <li>
+            In the `app/robots.ts` file, you can define global robots rules for
+            your entire site.
+          </li>
+        </ul>
       </div>
     </div>
   );
