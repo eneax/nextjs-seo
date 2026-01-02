@@ -149,6 +149,26 @@ export default function AboutPage() {
             your entire site.
           </li>
         </ul>
+
+        <h2 className="text-2xl font-semibold mb-3">Sitemap</h2>
+        <ul className="list-disc pl-6 mb-4">
+          <li>
+            A sitemap is an XML file that lists all the important pages on your
+            site.
+          </li>
+          <li>
+            This ensures that search engines can easily find all the important
+            pages on your site.
+          </li>
+          <li>
+            In Next.js, you can create a dynamic sitemap by generating the XML
+            file based on your site routes and content.
+          </li>
+          <li>
+            The `app/sitemap.ts` file demonstrates how to create a sitemap that
+            updates automatically as you add or remove pages.
+          </li>
+        </ul>
       </div>
     </div>
   );
