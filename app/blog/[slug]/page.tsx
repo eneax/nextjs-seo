@@ -1,8 +1,30 @@
+import { Metadata } from "next";
 import { posts } from "../data";
 
 interface BlogPostPageProps {
   params: {
     slug: string;
+  };
+}
+
+export async function generateMetadata({
+  params,
+}: BlogPostPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = posts.find((post) => post.id === slug);
+
+  if (!post) {
+    return {
+      title: "Post Not Found",
+      description: "The blog post you are looking for does not exist.",
+    };
+  }
+
+  return {
+    title: `${post.title} | NextSEO Blog`,
+    description: post.excerpt,
+    authors: [{ name: post.author }],
+    keywords: ["blog", "nextjs", "seo", post.title.toLowerCase()],
   };
 }
 
