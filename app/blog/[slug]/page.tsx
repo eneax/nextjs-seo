@@ -17,6 +17,9 @@ export async function generateMetadata({
     return {
       title: "Post Not Found",
       description: "The blog post you are looking for does not exist.",
+      alternates: {
+        canonical: `https://nextseo.com/blog/${slug}`,
+      },
     };
   }
 
@@ -25,6 +28,9 @@ export async function generateMetadata({
     description: post.excerpt,
     authors: [{ name: post.author }],
     keywords: ["blog", "nextjs", "seo", post.title.toLowerCase()],
+    alternates: {
+      canonical: `https://nextseo.com/blog/${slug}`,
+    },
   };
 }
 

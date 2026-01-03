@@ -169,6 +169,45 @@ export default function AboutPage() {
             updates automatically as you add or remove pages.
           </li>
         </ul>
+
+        <h2 className="text-2xl font-semibold mb-3">Canonical URLs</h2>
+        <ul className="list-disc pl-6 mb-4">
+          <li>
+            Canonical URLs help prevent duplicate content issues by specifying
+            the preferred version of a page.
+          </li>
+          <li>
+            In Next.js, you can define canonical URLs in the `alternates`
+            section of the metadata object.
+          </li>
+          <li>
+            This ensures that search engines understand which version of a page
+            to index and display in search results.
+          </li>
+          <li>
+            Always point the canonical URL to the main version of the page,
+            without any query parameters or session IDs.
+          </li>
+        </ul>
+
+        <p className="mb-4">
+          Example canonical URLs for a product page with different query
+          parameters:
+        </p>
+        <ul className="list-disc pl-6 mb-4">
+          <li>https://yoursite.com/products/laptop-pro</li>
+          <li>https://yoursite.com/products/laptop-pro?color=black</li>
+          <li>https://yoursite.com/products/laptop-pro?size=13</li>
+          <li>https://yoursite.com/products/laptop-pro?color=black&size=13</li>
+        </ul>
+
+        <p className="mb-4">
+          The canonical URL should always point to the main product page without
+          any query parameters:
+        </p>
+        <ul className="list-disc pl-6 mb-4">
+          <li>https://yoursite.com/products/laptop-pro</li>
+        </ul>
       </div>
     </div>
   );
