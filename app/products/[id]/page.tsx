@@ -17,6 +17,9 @@ export async function generateMetadata({
     return {
       title: "Product Not Found",
       description: "The product you are looking for does not exist.",
+      alternates: {
+        canonical: `https://nextseo.com/products/${id}`,
+      },
     };
   }
 
@@ -26,6 +29,9 @@ export async function generateMetadata({
       product.inStock ? "In Stock" : "Out of Stock"
     }. Rating: ${product.rating}/5 stars.`,
     keywords: [product.category, product.brand, product.name.toLowerCase()],
+    alternates: {
+      canonical: `https://nextseo.com/products/${id}`,
+    },
   };
 }
 
