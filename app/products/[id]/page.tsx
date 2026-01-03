@@ -7,6 +7,60 @@ interface ProductPageProps {
   };
 }
 
+interface ProductProps {
+  id: string;
+  name: string;
+  description: string;
+  brand: string;
+  category: string;
+  price: number;
+  inStock: boolean;
+  rating: number;
+  reviews: number;
+  features: string[];
+}
+
+function getProductStructuredData(product: ProductProps) {
+  const url = `https://nextseo.com/products/${product.id}`;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.description,
+    brand: {
+      "@type": "Brand",
+      name: product.brand,
+    },
+    category: product.category,
+    offers: {
+      "@type": "Offer",
+      price: product.price,
+      priceCurrency: "USD",
+      availability: product.inStock
+        ? "https://schema.org/InStock"
+        : "https://schema.org/OutOfStock",
+      seller: {
+        "@type": "Organization",
+        name: "Metadata Course Store",
+      },
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: product.rating,
+      reviewCount: product.reviews,
+      bestRating: 5,
+      worstRating: 1,
+    },
+    additionalProperty: product.features.map((feature) => ({
+      "@type": "PropertyValue",
+      name: "Feature",
+      value: feature,
+    })),
+    url: url,
+  };
+}
+
 export async function generateMetadata({
   params,
 }: ProductPageProps): Promise<Metadata> {
@@ -48,8 +102,15 @@ export default async function ProductPage({ params }: ProductPageProps) {
     );
   }
 
+  const structuredData = getProductStructuredData(product);
+
   return (
     <div className="container mx-auto px-4 py-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+
       <nav className="mb-6">
         <a
           href="/products"

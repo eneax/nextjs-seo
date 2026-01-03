@@ -208,6 +208,27 @@ export default function AboutPage() {
         <ul className="list-disc pl-6 mb-4">
           <li>https://yoursite.com/products/laptop-pro</li>
         </ul>
+
+        <h2 className="text-2xl font-semibold mb-3">JSON-LD</h2>
+        <ul className="list-disc pl-6 mb-4">
+          <li>
+            JSON-LD (JavaScript Object Notation for Linked Data) is a format for
+            structuring data on the web.
+          </li>
+          <li>
+            It helps search engines and LLMs understand the content and context
+            of your pages better.
+          </li>
+          <li>
+            In Next.js, the best practice is to render structured data as a
+            `script` tag in `layout.js` or `page.js` components.
+          </li>
+          <li>
+            This enhances your SEO by providing additional information about
+            your content, such as products, reviews, events, blog posts, and
+            more.
+          </li>
+        </ul>
       </div>
     </div>
   );

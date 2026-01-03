@@ -7,6 +7,41 @@ interface BlogPostPageProps {
   };
 }
 
+interface BlogPostProps {
+  id: string;
+  title: string;
+  excerpt: string;
+  author: string;
+  date: string;
+}
+
+function getBlogPostStructuredData(post: BlogPostProps) {
+  const url = `https://nextseo.com/blog/${post.id}`;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
+    headline: post.title,
+    description: post.excerpt,
+    author: {
+      "@type": "Person",
+      name: post.author,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "NextSEO",
+      url: "https://nextseo.com",
+    },
+    datePublished: post.date,
+    dateModified: post.date,
+    url: url,
+  };
+}
+
 export async function generateMetadata({
   params,
 }: BlogPostPageProps): Promise<Metadata> {
@@ -47,8 +82,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     );
   }
 
+  const structuredData = getBlogPostStructuredData(post);
+
   return (
     <div className="container mx-auto px-4 py-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+
       <nav className="mb-6">
         <a
           href="/blog"
