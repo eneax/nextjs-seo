@@ -1,4 +1,6 @@
 import { Metadata } from "next";
+import Link from "next/link";
+
 import { products } from "../data";
 
 interface ProductPageProps {
@@ -105,77 +107,128 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const structuredData = getProductStructuredData(product);
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <main className="bg-white grid h-screen place-content-top">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      <nav className="mb-6">
-        <a
-          href="/products"
-          className="text-blue-600 hover:text-blue-800 hover:underline"
-        >
-          Back to Products
-        </a>
-      </nav>
-
-      <div className="grid gap-8 lg:grid-cols-2">
-        <div>
-          <h1 className="text-4xl font-bold mb-4">{product.name}</h1>
-          <div className="mb-6">
-            <span className="text-3xl font-bold text-green-600">
-              ${product.price}
-            </span>
-            <span
-              className={`ml-4 px-3 py-1 rounded-full text-sm ${
-                product.inStock
-                  ? "bg-green-100 text-green-800"
-                  : "bg-red-100 text-red-800"
-              }`}
-            >
-              {product.inStock ? "In Stock" : "Out of Stock"}
-            </span>
-          </div>
-
-          <div className="mb-6">
-            <div className="flex items-center mb-2">
-              <span className="text-yellow-500">★</span>
-              <span className="ml-1 font-semibold">{product.rating}</span>
-              <span className="ml-2 text-gray-600">
-                ({product.reviews} reviews)
-              </span>
-            </div>
-            <p className="text-gray-600">Brand: {product.brand}</p>
-            <p className="text-gray-600">Category: {product.category}</p>
-          </div>
-
-          <p className="text-lg mb-6">{product.description}</p>
-
-          <button
-            className={`px-6 py-3 rounded-lg font-semibold ${
-              product.inStock
-                ? "bg-blue-600 text-white hover:bg-blue-700"
-                : "bg-gray-300 text-gray-500 cursor-not-allowed"
-            }`}
-            disabled={!product.inStock}
-          >
-            {product.inStock ? "Add to Cart" : "Out of Stock"}
-          </button>
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-semibold mb-4">Features</h2>
-          <ul className="space-y-2">
-            {product.features.map((feature, index) => (
-              <li key={index} className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
-                {feature}
+      <section>
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          <nav aria-label="Breadcrumb" className="mb-6">
+            <ol className="flex items-center gap-1 text-sm text-gray-700">
+              <li>
+                <Link
+                  href="/products"
+                  className="block transition-colors hover:text-gray-900"
+                >
+                  Products
+                </Link>
               </li>
-            ))}
-          </ul>
+
+              <li className="rtl:rotate-180">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="size-4"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+              </li>
+
+              <li>
+                <Link
+                  href={`/products/${product.id}`}
+                  className="block transition-colors hover:text-gray-900"
+                >
+                  {product.name}
+                </Link>
+              </li>
+            </ol>
+          </nav>
+
+          <div className="space-y-4 md:space-y-8">
+            <div className="max-w-prose">
+              <h1 className="text-2xl font-semibold text-gray-900 sm:text-3xl">
+                {product.name}
+              </h1>
+
+              <p className="mt-4 text-pretty text-gray-700">
+                {product.description}
+              </p>
+            </div>
+
+            <div className="flow-root">
+              <dl className="-my-3 divide-y divide-gray-200 text-sm">
+                <div className="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                  <dt className="font-medium text-gray-900">Brand</dt>
+
+                  <dd className="text-gray-700 sm:col-span-2">
+                    {product.brand}
+                  </dd>
+                </div>
+
+                <div className="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                  <dt className="font-medium text-gray-900">Category</dt>
+
+                  <dd className="text-gray-700 sm:col-span-2">
+                    {product.category}
+                  </dd>
+                </div>
+
+                <div className="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                  <dt className="font-medium text-gray-900">Price</dt>
+
+                  <dd className="text-gray-700 sm:col-span-2">
+                    ${product.price}
+                  </dd>
+                </div>
+
+                <div className="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                  <dt className="font-medium text-gray-900">Availability</dt>
+
+                  <dd className="text-gray-700 sm:col-span-2">
+                    {product.inStock ? "In Stock" : "Out of Stock"}
+                  </dd>
+                </div>
+
+                <div className="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                  <dt className="font-medium text-gray-900">Rating</dt>
+
+                  <dd className="text-gray-700 sm:col-span-2">
+                    {product.rating} / 5
+                  </dd>
+                </div>
+
+                <div className="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                  <dt className="font-medium text-gray-900">Reviews</dt>
+
+                  <dd className="text-gray-700 sm:col-span-2">
+                    {product.reviews}
+                  </dd>
+                </div>
+
+                <div className="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                  <dt className="font-medium text-gray-900">Features</dt>
+
+                  <dd className="text-gray-700 sm:col-span-2">
+                    <ul className="list-disc pl-5 space-y-1">
+                      {product.features.map((feature, index) => (
+                        <li key={index}>{feature}</li>
+                      ))}
+                    </ul>
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
