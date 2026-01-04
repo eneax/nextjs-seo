@@ -2,6 +2,8 @@
 
 Get indexed faster on search engines and optimize for Core Web Vitals.
 
+<img width="923" height="246" alt="nextjs-seo-project" src="https://github.com/user-attachments/assets/f38d8792-6c42-457d-b203-33d3308ec876" />
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
