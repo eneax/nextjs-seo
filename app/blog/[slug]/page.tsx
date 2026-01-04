@@ -1,4 +1,6 @@
 import { Metadata } from "next";
+import Link from "next/link";
+
 import { posts } from "../data";
 
 interface BlogPostPageProps {
@@ -85,37 +87,69 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const structuredData = getBlogPostStructuredData(post);
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <main className="bg-white min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      <nav className="mb-6">
-        <a
-          href="/blog"
-          className="text-blue-600 hover:text-blue-800 hover:underline"
-        >
-          Back to Blog
-        </a>
-      </nav>
+      <section>
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          <nav aria-label="Breadcrumb" className="mb-6">
+            <ol className="flex items-center gap-1 text-sm text-gray-700">
+              <li>
+                <Link
+                  href="/blog"
+                  className="block transition-colors hover:text-gray-900"
+                >
+                  Blog
+                </Link>
+              </li>
 
-      <article>
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
-          <div className="text-gray-600 mb-4">
-            <p>
-              By {post.author} • {new Date(post.date).toLocaleDateString()}
-            </p>
-          </div>
-          <p className="text-lg text-gray-700">{post.excerpt}</p>
-        </header>
+              <li className="rtl:rotate-180">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="size-4"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+              </li>
 
-        <div
-          className="prose max-w-none"
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
-      </article>
-    </div>
+              <li>
+                <Link
+                  href={`/blog/${post.id}`}
+                  className="block transition-colors hover:text-gray-900"
+                >
+                  {post.title}
+                </Link>
+              </li>
+            </ol>
+          </nav>
+
+          <article>
+            <header className="mb-8">
+              <h1 className="text-4xl font-bold mb-4 text-gray-900">
+                {post.title}
+              </h1>
+              <p className="mt-4 text-pretty text-gray-600">
+                By {post.author} • {new Date(post.date).toLocaleDateString()}
+              </p>
+              <p className="mt-4 text-pretty text-gray-700">{post.excerpt}</p>
+            </header>
+
+            <div
+              className="prose max-w-none"
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
+          </article>
+        </div>
+      </section>
+    </main>
   );
 }
