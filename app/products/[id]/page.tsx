@@ -23,7 +23,7 @@ interface ProductProps {
 }
 
 function getProductStructuredData(product: ProductProps) {
-  const url = `https://nextseo.com/products/${product.id}`;
+  const url = `https://nextjs-seo-x.vercel.app/products/${product.id}`;
 
   return {
     "@context": "https://schema.org",
@@ -74,7 +74,7 @@ export async function generateMetadata({
       title: "Product Not Found",
       description: "The product you are looking for does not exist.",
       alternates: {
-        canonical: `https://nextseo.com/products/${id}`,
+        canonical: `https://nextjs-seo-x.vercel.app/products/${id}`,
       },
     };
   }
@@ -86,7 +86,7 @@ export async function generateMetadata({
     }. Rating: ${product.rating}/5 stars.`,
     keywords: [product.category, product.brand, product.name.toLowerCase()],
     alternates: {
-      canonical: `https://nextseo.com/products/${id}`,
+      canonical: `https://nextjs-seo-x.vercel.app/products/${id}`,
     },
   };
 }

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Next.js SEO",
     description: "Master metadata, robots, sitemaps, and more.",
-    siteName: "nextseo.com",
+    siteName: "nextjs-seo-x.vercel.app",
     locale: "en_US",
     type: "website",
   },
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     title: "Next.js SEO",
     description: "Master metadata, robots, sitemaps, and more.",
     creator: "@eneax",
-    images: ["https://example.com/seo.png"],
+    images: ["https://nextjs-seo-x.vercel.app/seo.png"],
   },
   robots: {
     index: true,
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://nextseo.com/blog",
+    canonical: "https://nextjs-seo-x.vercel.app/blog",
   },
 };
 

@@ -18,7 +18,7 @@ interface BlogPostProps {
 }
 
 function getBlogPostStructuredData(post: BlogPostProps) {
-  const url = `https://nextseo.com/blog/${post.id}`;
+  const url = `https://nextjs-seo-x.vercel.app/blog/${post.id}`;
 
   return {
     "@context": "https://schema.org",
@@ -36,7 +36,7 @@ function getBlogPostStructuredData(post: BlogPostProps) {
     publisher: {
       "@type": "Organization",
       name: "NextSEO",
-      url: "https://nextseo.com",
+      url: "https://nextjs-seo-x.vercel.app",
     },
     datePublished: post.date,
     dateModified: post.date,
@@ -55,7 +55,7 @@ export async function generateMetadata({
       title: "Post Not Found",
       description: "The blog post you are looking for does not exist.",
       alternates: {
-        canonical: `https://nextseo.com/blog/${slug}`,
+        canonical: `https://nextjs-seo-x.vercel.app/blog/${slug}`,
       },
     };
   }
@@ -66,7 +66,7 @@ export async function generateMetadata({
     authors: [{ name: post.author }],
     keywords: ["blog", "nextjs", "seo", post.title.toLowerCase()],
     alternates: {
-      canonical: `https://nextseo.com/blog/${slug}`,
+      canonical: `https://nextjs-seo-x.vercel.app/blog/${slug}`,
     },
   };
 }
